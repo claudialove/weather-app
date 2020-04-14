@@ -1,5 +1,32 @@
 body {
     font-family: 'Source Code Pro', monospace;
-    background: rgba(221, 142, 192, 0.9);
+    background:rgb(243, 235, 225);
 }
 
+#today {
+    font-size: 1.2em;
+    text-align: center;
+    background: rgb(185, 241, 241);
+    color: rgb(74, 134, 134);
+}
+
+.jumbotron-fluid {
+    text-align: center;
+    background: rgb(241, 228, 228);
+    color:  rgb(100, 86, 65); 
+}
+
+#fiveday {
+    font-size: 1.2em;
+    text-align: center;
+    background: rgb(185, 241, 241);
+    color: rgb(74, 134, 134);
+}
+
+.card-body {
+    text-align: center;
+    background: rgb(241, 228, 228);
+    color:  rgb(100, 86, 65); 
+    margin: 5px;
+    xport:rgb(243, 235, 225);
+}

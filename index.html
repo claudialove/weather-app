@@ -1,24 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- google fonts used -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+
+ <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- local style sheet -->
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
 
-    <title>Weather App</title>
+    <title>THE WEATHER TODAY IN...</title>
 </head>
 
 <body>
     <!-- need a title bar -->
-    <!-- need a form with search and a saved list (left rail) -->
-    <!-- need a display card for body -->
-    <!-- need 5 display cards for 5 day forecast with title -->
+    <div class = "container-fluid">
+    <div class="page-header" id="today">
+      <h2>THE WEATHER TODAY IN...</h2>
+    </div>
 
-    <h1>weather app</h1>
+    <!-- need a form with search and a saved list (left rail) -->
  
+
+    <!-- need a display card for body -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4" id="city-display"></h1>
+          <p class="lead" id="temp"><h1></h1></p>
+          <p class="lead" id="humidity"></p>
+          <p class="lead" id="wind-speed"></p>
+        </div>
+      </div>
+
+      <!-- border for 5 day forecast -->
+      <div class="page-header" id="fiveday">
+        <h2>5 DAY FORECAST</h2>
+      </div>
+
+    <!-- need 5 display cards for 5 day forecast with title -->
+    <div class="card-group">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" id="day1-date">date</h5>
+            <p class="card-text" id="day1-icon">[ icon ]</p>
+            <p class="card-text" id="day1-temp">temp: </p>
+            <p class="card-text" id="day1-humidity">humidity: </p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" id="day2-date">date</h5>
+            <p class="card-text" id="day2-icon">[ icon ]</p>
+            <p class="card-text" id="day2-temp">temp: </p>
+            <p class="card-text" id="day2-humidity">humidity: </p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="day3-date">date</h5>
+              <p class="card-text" id="day3-icon">[ icon ]</p>
+              <p class="card-text" id="day3-temp">temp: </p>
+              <p class="card-text" id="day3-humidity">humidity: </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="day4-date">date</h5>
+              <p class="card-text" id="day4-icon">[ icon ]</p>
+              <p class="card-text" id="day4-temp">temp: </p>
+              <p class="card-text" id="day4-humidity">humidity: </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" id="day5-date">date</h5>
+            <p class="card-text" id="day5-icon">[ icon ]</p>
+            <p class="card-text" id="day5-temp">temp: </p>
+            <p class="card-text" id="day5-humidity">humidity: </p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
     
 
+  <!--for AJAX/jquery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var APIKey = "510f5ff0cb0a45dc6e2c8d7c150ce80e";
+
+// Here we are building the URL we need to query the database
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Fairfax,Virginia&appid=" + APIKey;
+
+   // We then created an AJAX call
+   $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(queryURL);
+    console.log(response);
+    console.log(response.main.temp);
+    
+    //grab data from api and put in variables
+    var city = response.name;
+    var wind = response.wind;
+    var windSpeed = wind.speed;
+    var windDeg = wind.deg;
+    var humidity = response.main.humidity;
+    var tempK = response.main.temp; 
+
+    //convert kelvin temp to F
+    var tempF = Math.floor(parseInt(tempK) - 273.15) * 1.80 + 32;
+  
+    // Create CODE HERE to transfer content to HTML
+    $("#city-display").text( city);
+    $("#temp").text("Temperature: " + tempF + " °");
+    $("#humidity").text("Humidity is: " + humidity + " %");
+    $("#wind-speed").text("Wind speed of: " + windSpeed + "mph");
+    $("#wind-speed").text("Wind speed of: " + windSpeed + "mph");
+
+
+  });
+</script>
+
+
+    <!-- bootstrap js links -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- local javascript file -->
     <script src="script.js"></script>
 </body>
 </html>
+
+
+<body>
+
+
+
+    
+
+
+    
