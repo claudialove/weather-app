@@ -47,6 +47,24 @@ function showData() {
     console.log(response);
     console.log(response.main.temp);
 
+
+
+    //grab data from api and put in variables
+        var city = response.name;
+        var windSpeed = response.wind.speed;
+        var humidity = response.main.humidity;
+        var tempK = response.main.temp;
+
+              //convert kelvin temp to F
+      var tempF = Math.round(parseInt(tempK) - 273.15) * 1.80 + 32;
+
+            // Create CODE HERE to transfer content to HTML from daily api
+    $("#city-display").text(city);
+    $("#temp").text("Temperature: " + tempF + "°");
+    $("#humidity").text("Humidity is: " + humidity + "%");
+    $("#wind-speed").text("Wind speed of: " + windSpeed + "mph");
+  });
+
     //and a call for 5-day weather data
     $.ajax({
       url: queryURLFive,
@@ -54,33 +72,12 @@ function showData() {
   }).then(function (response) {
     console.log(queryURLFive);
     console.log(response);
-  });
-  
-//function to get just the most important objects from the crazy five-day array
-function getFive(listFive) {
-  var date = "";
-  var arr = [];
-  for (var i = 0; i < listFive.length; i++) {
-      var dateFive = listFives[i].dt_txt.split(" ")[0];
-      if (dateFive !== date) {
-          date = dateFive.split(" ")[0];
-          if (arr.length < 5) {
-              arr.push(listFive[i]);
-          }
-      }
-  }
-  return arr;
-}
+    console.log(response.list[0]);
 
-    //grab data from api and put in variables
-    var city = response.name;
-    var wind = response.wind;
-    var windSpeed = wind.speed;
-    var windDeg = wind.deg;
-    var humidity = response.main.humidity;
-    var tempK = response.main.temp;
+
 
     //grab data from 5 day api and put in variables
+   
     var day1Date = response.list[0].dt_txt;
     var day1TempK = response.list[0].main.temp;
     var day1Hum = response.list[0].main.humidity;
@@ -101,20 +98,15 @@ function getFive(listFive) {
     var day5TempK = response.list[32].main.temp;
     var day5Hum = response.list[32].main.humidity;
 
-    //convert kelvin temp to F
-    var tempF = Math.round(parseInt(tempK) - 273.15) * 1.80 + 32;
+  
     var day1TempF = Math.round(parseInt(day1TempK) - 273.15) * 1.80 + 32;
     var day2TempF = Math.round(parseInt(day2TempK) - 273.15) * 1.80 + 32;
     var day3TempF = Math.round(parseInt(day3TempK) - 273.15) * 1.80 + 32;
     var day4TempF = Math.round(parseInt(day4TempK) - 273.15) * 1.80 + 32;
     var day5TempF = Math.round(parseInt(day5TempK) - 273.15) * 1.80 + 32;
 
-    // Create CODE HERE to transfer content to HTML from daily api
-    $("#city-display").text(city);
-    $("#temp").text("Temperature: " + tempF + "°");
-    $("#humidity").text("Humidity is: " + humidity + "%");
-    $("#wind-speed").text("Wind speed of: " + windSpeed + "mph");
-    $("#wind-speed").text("Wind speed of: " + windSpeed + "mph");
+
+ 
 
     // Create CODE HERE to transfer content to HTML from 5 day api
     $("#day1-date").text(day1Date);
