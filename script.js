@@ -5,13 +5,32 @@
 //when a valid city is selected this app should be populated with todays weather data and the 5 day forecast
 
 
-//this is a function to capture user text input to use as a variable and also display on screen, console log and try to save in local storage
+//load storage when page renders
+function getFromStorage() {
+  var storedData = localStorage.getItem("city");
+  if (storedData) {
+    var city = JSON.parse(storedData)
+  } else {
+    var city = {}
+  }
+}
+
+//render value for city-input on the screen
+function renderState() {
+  $("#city-input").text(city.name)
+}
+
+//save to local storage after its rendered
+function saveToStorage(){
+  localStorage.setItem("city", JSON.stringify(city));
+}
 function showData() {
   //an on-screen text box collects a value for city and then displays it on the screen as text
   var city = $("#city-input").val()
   $("#label-city").html(city);
   console.log(city);
 
+//this is a function to capture user text input to use as a variable and also display on screen, console log and try to save in local storage
 
   var APIKey = "510f5ff0cb0a45dc6e2c8d7c150ce80e";
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
@@ -34,7 +53,7 @@ function showData() {
     var tempK = response.main.temp;
 
     //convert kelvin temp to F
-    var tempF = Math.floor(parseInt(tempK) - 273.15) * 1.80 + 32;
+    var tempF = Math.round(parseInt(tempK) - 273.15) * 1.80 + 32;
 
     // Create CODE HERE to transfer content to HTML
     $("#city-display").text(city);
@@ -45,6 +64,7 @@ function showData() {
 
 
   });
+
 }
 
 
