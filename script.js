@@ -74,27 +74,21 @@ function showData() {
     console.log(response);
     console.log(response.list[0]);
 
-
-
     //grab data from 5 day api and put in variables
    
-    var day1Date = response.list[0].dt_txt;
     var day1TempK = response.list[0].main.temp;
     var day1Hum = response.list[0].main.humidity;
 
-    var day2Date = response.list[13].dt_txt;
+ 
     var day2TempK = response.list[13].main.temp;
     var day2Hum = response.list[13].main.humidity;
 
-    var day3Date = response.list[19].dt_txt;
     var day3TempK = response.list[19].main.temp;
     var day3Hum = response.list[19].main.humidity;
 
-    var day4Date = response.list[25].dt_txt;
     var day4TempK = response.list[25].main.temp;
     var day4Hum = response.list[25].main.humidity;
 
-    var day5Date = response.list[32].dt_txt;
     var day5TempK = response.list[32].main.temp;
     var day5Hum = response.list[32].main.humidity;
 
@@ -106,28 +100,25 @@ function showData() {
     var day5TempF = Math.round(parseInt(day5TempK) - 273.15) * 1.80 + 32;
 
 
- 
+
 
     // Create CODE HERE to transfer content to HTML from 5 day api
-    $("#day1-date").text(day1Date);
-    $("#day1-temp").text(day1TempF);
-    $("#day1-humidity").text(day1Hum);
+ 
+    $("#day1-temp").text("temp: " + day1TempF);
+    $("#day1-humidity").text("humidity: " + day1Hum);
 
-    $("#day2-date").text(day2Date);
-    $("#day2-temp").text(day2TempF);
-    $("#day2-humidity").text(day2Hum);
+    $("#day2-temp").text("temp: " + day2TempF);
+    $("#day2-humidity").text("humidity: " + day2Hum);
+   
+    $("#day3-temp").text("temp: " + day3TempF);
+    $("#day3-humidity").text("humidity: " + day3Hum);
 
-    $("#day3-date").text(day3Date);
-    $("#day3-temp").text(day3TempF);
-    $("#day3-humidity").text(day3Hum);
+  
+    $("#day4-temp").text("temp: " + day4TempF);
+    $("#day4-humidity").text("humidity: " + day4Hum);
 
-    $("#day4-date").text(day4Date);
-    $("#day4-temp").text(day4TempF);
-    $("#day4-humidity").text(day4Hum);
-
-    $("#day5-date").text(day5Date);
-    $("#day5-temp").text(day5TempF);
-    $("#day5-humidity").text(day5Hum);
+    $("#day5-temp").text("temp: " + day5TempF);
+    $("#day5-humidity").text("humidity: " + day5Hum);
 
 
   });
