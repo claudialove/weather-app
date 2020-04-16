@@ -32,10 +32,13 @@ function showData() {
 
 //this is a function to capture user text input to use as a variable and also display on screen, console log and try to save in local storage
 
+
+//variables for API call and concatenated URL strings
   var APIKey = "510f5ff0cb0a45dc6e2c8d7c150ce80e";
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+  var queryURLFive = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
 
-  // We then created an AJAX call
+  // We then created an AJAX call for today's weather
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -43,6 +46,15 @@ function showData() {
     console.log(queryURL);
     console.log(response);
     console.log(response.main.temp);
+
+    //and a call for 5-day weather data
+    $.ajax({
+      url: queryURLFive,
+      method: "GET"
+  }).then(function (response) {
+    console.log(queryURLFive);
+    console.log(response);
+  });
 
     //grab data from api and put in variables
     var city = response.name;
