@@ -19,21 +19,17 @@
 </head>
 
 <body>
-    <!-- need a title bar -->
+    <!-- need a title bar with search -->
     <div class = "container-fluid">
     <div class="page-header" id="today">
       <h2>THE WEATHER TODAY IN...</h2>
+      <div>
+        <input type="text" id="city-input" placeholder="search for a city" />
+        <input type="button" value="search" onclick="showData();" />
+      </div>
     </div>
 
-    <!-- This form will be where users input data about the city -->
-
-    <div>
-      what is your city? <br>
-      <input type="text" id="city-input" /><br>
-      your city: <label id="label-city"></label><br>
-      <input type="button" value="submit data" onclick="showData();" />
-  </div>
-    
+   
     <!-- need a display card for body -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -54,37 +50,29 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title" id="day1-date">date</h5>
-            <p class="card-text" id="day1-icon">[ icon ]</p>
             <p class="card-text" id="day1-temp">temp: </p>
             <p class="card-text" id="day1-humidity">humidity: </p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
         <div class="card">
           <div class="card-body">
             <h5 class="card-title" id="day2-date">date</h5>
-            <p class="card-text" id="day2-icon">[ icon ]</p>
             <p class="card-text" id="day2-temp">temp: </p>
             <p class="card-text" id="day2-humidity">humidity: </p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
         <div class="card">
             <div class="card-body">
               <h5 class="card-title" id="day3-date">date</h5>
-              <p class="card-text" id="day3-icon">[ icon ]</p>
               <p class="card-text" id="day3-temp">temp: </p>
               <p class="card-text" id="day3-humidity">humidity: </p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
               <h5 class="card-title" id="day4-date">date</h5>
-              <p class="card-text" id="day4-icon">[ icon ]</p>
               <p class="card-text" id="day4-temp">temp: </p>
               <p class="card-text" id="day4-humidity">humidity: </p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
         <div class="card">
@@ -93,7 +81,6 @@
             <p class="card-text" id="day5-icon">[ icon ]</p>
             <p class="card-text" id="day5-temp">temp: </p>
             <p class="card-text" id="day5-humidity">humidity: </p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>

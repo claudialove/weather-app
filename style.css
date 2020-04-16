@@ -10,6 +10,10 @@ body {
     color: rgb(74, 134, 134);
 }
 
+#city-input {
+  margin: 5px;  
+}
+
 #search {
     background: rgb(241, 228, 228); 
 }
